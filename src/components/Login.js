@@ -11,7 +11,7 @@ export default class Login extends Component {
 
   submit = () => {
     login(this.state.email, this.state.password)
-      .then((user) => {
+      .then(user => {
         this.props.onLogin(user);
         this.props.history.push('/');
       });
@@ -19,7 +19,7 @@ export default class Login extends Component {
 
   render() {
     return (
-      <Container className="auth--container">
+      <Container className="auth__container">
         <Grid>
           <Grid.Row centered>
             <Grid.Column largeScreen={6} computer={6} tablet={10} mobile={16}>
@@ -27,7 +27,7 @@ export default class Login extends Component {
                 <Header as="h1" textAlign="center">
                   Log In
                 </Header>
-                <Form className="login--form" onSubmit={this.submit}>
+                <Form className="login__form" onSubmit={this.submit}>
                   <Form.Field
                     control="input"
                     type="email"
@@ -35,17 +35,17 @@ export default class Login extends Component {
                     placeholder="Enter an email"
                     onChange={(e) => this.setState({ email: e.target.value })}
                   />
-                  {/* <Form.Field
+                  <Form.Field
                     control="input"
                     type="password"
                     label="Password"
                     placeholder="Password"
                     onChange={(e) => this.setState({ password: e.target.value })}
-                  /> */}
+                  />
                   <Form.Field control="input" type="hidden" />
                   <Button fluid content="Log in" color="purple" />
                 </Form>
-                <Message className="auth--message">
+                <Message className="auth__message">
                   Not registered yet? <Link to="/register">Sign Up</Link>
                 </Message>
               </Segment>

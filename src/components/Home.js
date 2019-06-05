@@ -9,7 +9,7 @@ export default class Home extends Component {
 
   render() {
     return (
-      <Container className="home--container">
+      <Container className="home__container">
         <Grid>
           <Button
             onClick={() => this.logout()}

@@ -32,14 +32,14 @@
   }
 }
 
-.auth--container, .home--container {
+.auth__container, .home__container {
   margin-top: 50px;
 }
 
-.register--form, .login--form {
+.register__form, .login__form {
   text-align: left;
 }
 
-.auth--message {
+.auth__message {
   text-align: center;
 }

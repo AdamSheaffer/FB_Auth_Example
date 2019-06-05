@@ -1,30 +1,26 @@
 import React, { Component } from 'react';
 import { Form, Button, Container, Grid, Message, Segment, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { saveUserToJsonServer } from '../auth/userManager';
+import { register } from '../auth/userManager';
 
 export default class Register extends Component {
   state = {
     email: '',
-    username: ''
+    username: '',
+    password: ''
   }
 
   submit = () => {
-    const user = {
-      email: this.state.email,
-      username: this.state.username,
-    }
-
-    saveUserToJsonServer(user)
-      .then((user) => {
+    register(this.state)
+      .then(newUser => {
+        this.props.onRegister(newUser);
         this.props.history.push('/');
-        this.props.onRegister(user);
       });
   }
 
   render() {
     return (
-      <Container className="auth--container">
+      <Container className="auth__container">
         <Grid>
           <Grid.Row centered>
             <Grid.Column largeScreen={6} computer={6} tablet={10} mobile={16}>
@@ -32,7 +28,7 @@ export default class Register extends Component {
                 <Header as="h1" textAlign="center">
                   Register
                 </Header>
-                <Form className="register--form" onSubmit={this.submit}>
+                <Form className="register__form" onSubmit={this.submit}>
                   <Form.Field
                     control="input"
                     type="text"
@@ -47,17 +43,17 @@ export default class Register extends Component {
                     placeholder="Enter an email"
                     onChange={(e) => this.setState({ email: e.target.value })}
                   />
-                  {/* <Form.Field
+                  <Form.Field
                     control="input"
                     type="password"
                     label="Password"
                     placeholder="Password"
                     onChange={(e) => this.setState({ password: e.target.value })}
-                  /> */}
+                  />
                   <Form.Field control="input" type="hidden" />
                   <Button fluid content="Register" color="purple" />
                 </Form>
-                <Message className="auth--message">
+                <Message className="auth__message">
                   Already registered? <Link to="/login">Log In</Link>
                 </Message>
               </Segment>
